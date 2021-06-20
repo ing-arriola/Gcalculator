@@ -1,7 +1,10 @@
+import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
 import { View, Text, SafeAreaView, StyleSheet, Dimensions, Image,TextInput, TouchableOpacity } from 'react-native'
 
-const LoginScreen = () => {
+interface Props extends StackScreenProps <any,any> {}
+
+const LoginScreen = ({navigation}:Props) => {
   return (
     <>
       <View style={styles.background}>
