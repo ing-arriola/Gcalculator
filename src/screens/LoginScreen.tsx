@@ -1,15 +1,35 @@
 import React from 'react'
-import { View, Text, SafeAreaView, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Dimensions, Image,TextInput, TouchableOpacity } from 'react-native'
 
 const LoginScreen = () => {
   return (
     <>
       <View style={styles.background}>
-
+        <Image 
+            source={require('../assets/arrow.png')}
+            style={{top:100}}
+        />
       </View>
       <SafeAreaView style={styles.container} > 
         <View style={styles.loginContainer} >
-          <Text>Hola</Text>
+          <Image
+            source={require('../assets/logo.png')}
+            style={{position:'relative',top:-100}}
+          />
+          <View style={{height:80, justifyContent:'space-between'}} >
+              <TextInput
+                placeholder='User'
+                style={styles.textInput}
+              />
+              <TextInput
+                placeholder='User'
+                style={styles.textInput}
+              />
+              
+          </View>
+          <TouchableOpacity style={styles.button} activeOpacity={0.7} >
+                  <Text style={{color:'#fff'}} >Login</Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </>
@@ -24,7 +44,8 @@ const styles = StyleSheet.create({
   background:{
     backgroundColor:'#0072B1',
     height:Dimensions.get('window').height/2,
-    width:Dimensions.get('window').width
+    width:Dimensions.get('window').width,
+    alignItems:'center',
   },
   loginContainer:{
     backgroundColor:'#fff',
@@ -39,6 +60,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  textInput:{
+      height:30,
+      width:200,
+      borderColor:'#CACACA',
+      borderWidth:1,
+      paddingLeft:30
+  },
+  button:{
+      backgroundColor:'#009821',
+      height:30,
+      width:200,
+      marginTop:40,
+      alignItems:'center',
+      justifyContent:'center'
   }
 })
 
