@@ -30,7 +30,7 @@ const LoginScreen = ({navigation}:Props) => {
               />
               
           </View>
-          <TouchableOpacity style={styles.button} activeOpacity={0.7} >
+          <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={()=>navigation.navigate('ReportScreen')} >
                   <Text style={{color:'#fff'}} >Login</Text>
           </TouchableOpacity>
         </View>
