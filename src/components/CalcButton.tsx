@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import {CalculatorButton} from '../interfaces/calcButton'
 
 
-const CalcButton = ({ title,background='#2D2D2D' , wider=false, action}:CalculatorButton) => {
+const CalcButton = ({ title,background='white' , wider=false, action}:CalculatorButton) => {
 
     return (
         <TouchableOpacity
@@ -11,13 +11,12 @@ const CalcButton = ({ title,background='#2D2D2D' , wider=false, action}:Calculat
             activeOpacity={0.7}
             style={
                 {...styles.btn,
-                backgroundColor:background,
+                backgroundColor:background==='green'?'#009821':'#F4F4F4',
                 width:wider?180:80,
                 }} >
                     <Text 
                         style={
                             {...styles.btnText, 
-                            color:background==='#9b9b9b'? 'black':'white'
                          }} 
                     >{
                         title}
