@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
-import { View, Text, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, SafeAreaView } from 'react-native'
+import Header  from '../components/Header'
 import CalcButton from '../components/CalcButton'
 
 enum Operators {
@@ -110,108 +111,108 @@ const CalculatorScreen = () => {
     }
 
     return (
-        <View  style={styles.container} >
-            <Text style={styles.smallResult} > { previousValue } </Text>
-            <Text 
-                style={styles.result
-                } >
-                        { currentValue }
-            </Text>
-            <View style={styles.row} >
-                <CalcButton 
-                title='C'
-                background='#9b9b9b'
-                action={clearValue}
-                />
-                <CalcButton 
-                title='+/-'
-                background='#9b9b9b'
-                action={positiveNegative}
-                />
-                <CalcButton 
-                title='Del'
-                background='#9b9b9b'
-                action={DeleteButton}
-                />
-                <CalcButton 
-                    title='/'
-                    background='#FF9427'
-                    action={division}
-                />
+        <SafeAreaView style={{justifyContent:'space-between',height:height}} >
+            <View style={{zIndex:10}} >
+                <Header/>
             </View>
-            <View style={styles.row} >
-                <CalcButton 
-                    title='7'
-                    action={buildNumber}
-                />
-                <CalcButton 
-                    title='8'
-                    action={buildNumber}
-                />
-                <CalcButton 
-                    title='9'
+            <View style={{backgroundColor:'#fff', height:height/2,position:'absolute',width:width*1.15,borderRadius:300,zIndex:1,top:-200,alignSelf:'center'}} />
+            <View style={{backgroundColor:'#0072B1', height:height/2,position:'absolute',width:width,top:-70}} />
+            <View  >
+                <Text style={styles.smallResult} > { previousValue } </Text>
+                <Text 
+                    style={styles.result
+                    } >
+                            { currentValue }
+                </Text>
+                <View style={styles.row} >
+                    <CalcButton 
+                    title='C'
+                    action={clearValue}
+                    />
+                    <CalcButton 
+                    title='+/-'
+                    action={positiveNegative}
+                    />
+                    <CalcButton 
+                    title='Del'
+                    action={DeleteButton}
+                    />
+                    <CalcButton 
+                        title='/'
+                        action={division}
+                    />
+                </View>
+                <View style={styles.row} >
+                    <CalcButton 
+                        title='7'
+                        action={buildNumber}
+                    />
+                    <CalcButton 
+                        title='8'
+                        action={buildNumber}
+                    />
+                    <CalcButton 
+                        title='9'
+                        action={buildNumber}
+                        />
+                    <CalcButton 
+                        title='X'
+                        action={multiplication}
+                    />
+                </View>
+                <View style={styles.row} >
+                    <CalcButton 
+                    title='4'
                     action={buildNumber}
                     />
-                <CalcButton 
-                    title='X'
-                    background='#FF9427'
-                    action={multiplication}
-                />
+                    <CalcButton 
+                        title='5'
+                        action={buildNumber}
+                        />
+                    <CalcButton 
+                        title='6'
+                        action={buildNumber}
+                        />
+                    <CalcButton 
+                        title='-'
+                        action={substraction}
+                    />
+                </View>
+                <View style={styles.row} >
+                    <CalcButton 
+                        title='1'
+                        action={buildNumber}
+                        />
+                    <CalcButton 
+                        title='2'
+                        action={buildNumber}
+                        />
+                    <CalcButton 
+                        title='3'
+                        action={buildNumber}
+                        />
+                    <CalcButton 
+                        title='+'
+                        action={addition}
+                    />
+                </View>
+                <View style={styles.row} >
+                    <CalcButton 
+                        title='0'
+                        action={buildNumber}
+                        wider />
+                    <CalcButton 
+                        title='.'
+                        action={buildNumber}
+                        />
+                    <CalcButton 
+                        title='='
+                        background='green'
+                        action={calculate}
+                    />
+                </View>
             </View>
-            <View style={styles.row} >
-                <CalcButton 
-                title='4'
-                action={buildNumber}
-                />
-                <CalcButton 
-                    title='5'
-                    action={buildNumber}
-                    />
-                <CalcButton 
-                    title='6'
-                    action={buildNumber}
-                    />
-                <CalcButton 
-                    title='-'
-                    background='#FF9427'
-                    action={substraction}
-                />
-            </View>
-            <View style={styles.row} >
-                <CalcButton 
-                    title='1'
-                    action={buildNumber}
-                    />
-                <CalcButton 
-                    title='2'
-                    action={buildNumber}
-                    />
-                <CalcButton 
-                    title='3'
-                    action={buildNumber}
-                    />
-                <CalcButton 
-                    title='+'
-                    background='#FF9427'
-                    action={addition}
-                />
-            </View>
-            <View style={styles.row} >
-                <CalcButton 
-                    title='0'
-                    action={buildNumber}
-                    wider />
-                <CalcButton 
-                    title='.'
-                    action={buildNumber}
-                    />
-                <CalcButton 
-                    title='='
-                    background='#FF9427'
-                    action={calculate}
-                />
-            </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -221,11 +222,6 @@ const styles = StyleSheet.create({
     row:{
         flexDirection:'row',
         marginBottom:10
-    },container:{
-        paddingHorizontal: width/20,
-        flex:1,
-        justifyContent:'flex-end',
-        minHeight:10
     },
     result:{
         color:'#fff',
