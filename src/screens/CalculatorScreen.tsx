@@ -2,12 +2,17 @@ import React, { useRef, useState } from 'react'
 import { View, Text, StyleSheet, Dimensions, SafeAreaView } from 'react-native'
 import Header  from '../components/Header'
 import CalcButton from '../components/CalcButton'
+import {useStoreon} from 'storeon/react'
+import { Events, State} from "../store/store"
+import { StackScreenProps } from '@react-navigation/stack'
 
 enum Operators {
     addition,substraction,multiplication,divison
 }
+interface Props extends StackScreenProps <any,any> {}
 const { width, height } = Dimensions.get('window')
-const CalculatorScreen = () => {
+const CalculatorScreen = ({navigation}:Props) => {
+    const {dispatch} = useStoreon<State, Events>('report')
     const [currentValue, setcurrentValue] = useState('0')
     const [previousValue, setpreviousValue] = useState('0')
     const mathOperation = useRef <Operators> ()
@@ -87,16 +92,24 @@ const CalculatorScreen = () => {
         switch ( mathOperation.current ) {
             case Operators.addition:
                 setcurrentValue(`${number1+number2}`)
+                const add=`${number1}+${number2}=${number1+number2}`
+                dispatch('result',[{name:'adition',result:add}])
                 break;
             case Operators.substraction:
                 setcurrentValue(`${number2-number1}`)
+                const res=`${number1}-${number2}=${number1-number2}`
+                dispatch('result',[{name:'substraction',result:res}])
                 break;
             case Operators.multiplication:
                 setcurrentValue(`${number1*number2}`)
+                const mul=`${number1}*${number2}=${number1*number2}`
+                dispatch('result',[{name:'multiplication',result:mul}])
                 break;
             case Operators.divison:
                 if(number1>0){
                     setcurrentValue(`${number2/number1}`)
+                    const div=`${number1}/${number2}=${number1/number2}`
+                    dispatch('result',[{name:'division',result:div}])
                 }else{
                     setcurrentValue('Cannot be divided by 0 ')
                 }
@@ -113,7 +126,7 @@ const CalculatorScreen = () => {
     return (
         <SafeAreaView style={{justifyContent:'space-between',height:height}} >
             <View style={{zIndex:10}} >
-                <Header/>
+                <Header goback={()=>navigation.navigate('ReportScreen')} />
             </View>
             <View style={{backgroundColor:'#fff', height:height/2,position:'absolute',width:width*1.15,borderRadius:300,zIndex:1,top:-200,alignSelf:'center'}} />
             <View style={{backgroundColor:'#0072B1', height:height/2,position:'absolute',width:width,top:-70}} />
