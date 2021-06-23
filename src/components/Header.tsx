@@ -1,10 +1,14 @@
 import React from 'react'
 import { View, TouchableOpacity, Image, Dimensions, StyleSheet } from 'react-native'
 
-const Header = () => {
+interface Props{
+    goback:()=>void
+}
+
+const Header = ({goback}:Props) => {
     return (
         <View style={styles.container} >
-            <TouchableOpacity activeOpacity={0.7} style={{position:'absolute',left:20}}>
+            <TouchableOpacity activeOpacity={0.7} style={{position:'absolute',left:20}} onPress={goback}>
                     <Image
                         source={require('../assets/leftArrow.png')}
                     />

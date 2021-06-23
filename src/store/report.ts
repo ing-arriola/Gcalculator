@@ -21,6 +21,8 @@ export interface reportModuleEvents {
 export const reportModule = (parentStore: StoreonStore<State,Events>)  => {
     const store = createSubstore(parentStore, sliceName);
 
+    store.on("@init", () => ({ previousResults:[] }));
+
     store.on(addNewResult, (state,[data]) => {
         const prev=state.previousResults
         prev.push(data)

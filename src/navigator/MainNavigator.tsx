@@ -11,6 +11,7 @@ const MainNavigator = () => {
         <Stack.Navigator
         screenOptions={{
           headerShown:false,
+          gestureEnabled:false
         }}
         >
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
